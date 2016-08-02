@@ -10,10 +10,11 @@
     "declaration": true,
     "sourceMap": true,
     "lib": ["es6", "dom"],
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "outDir": "./lib"
   },
   "files": [
-    "./index.ts",
+    "./src/index.ts",
     "./src/types/animation.d.ts",
     "./src/types/player.d.ts"
   ],
