@@ -17,11 +17,7 @@ export class ElementAttributeService {
       top: element.getBoundingClientRect().top + window.scrollY,
       left: element.offsetLeft,
       topFromViewport: element.getBoundingClientRect().top
-    }
-  }
-
-  public getChildWidth(element: (ElementRef | HTMLElement), query: string): number {
-    return this.getElement(element).querySelector(query).clientWidth;
+    };
   }
 
   public getElement(element: (ElementRef | HTMLElement)): HTMLElement {
