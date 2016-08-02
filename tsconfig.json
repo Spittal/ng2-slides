@@ -5,18 +5,17 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "declaration": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
     "lib": ["es6", "dom"],
-    "strictNullChecks": false,
-    "baseUrl": "./src",
-    "paths": [
-    ]
+    "baseUrl": "./src"
   },
   "files": [
-    "./src/index.ts",
-    "./src/types/Animation.d.ts",
-    "./src/types/Player.d.ts"
+    "./index.ts",
+    "./src/types/animation.d.ts",
+    "./src/types/player.d.ts"
   ],
   "exclude": [
     "node_modules"
