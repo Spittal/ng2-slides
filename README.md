@@ -1,5 +1,8 @@
 # Ng2 Slides
 
+- [github](https://github.com/spittal/ng2-slides)
+- [npm](https://www.npmjs.com/package/ng2-slides)
+
 This is a small library to create sliding full-height panel effect for Angular2. It has full touch support, keyboard arrow support, and will fall back onto a 'normal' scroll website when the browser height dips below 600px.
 
 ## 1: Installation

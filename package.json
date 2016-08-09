@@ -1,6 +1,6 @@
 {
   "name": "ng2-slides",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "An Angular2 library to create full height slides",
   "main": "dist/index.js",
   "scripts": {
@@ -16,7 +16,6 @@
     "panel",
     "full height"
   ],
-  "readme": "README.md",
   "author": "Jamie Spittal",
   "license": "MIT",
   "bugs": {
