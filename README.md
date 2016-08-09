@@ -15,7 +15,7 @@ You can install this just like you would any other npm package.
 npm install --save-dev ng2-slides
 ```
 
-## 2: Basic Use
+## 2: Useage
 
 First and foremost you need to provide the `SlideService` to your application. Preferably you would do this in your Angular2 application bootstrap
 ```typescript
@@ -104,3 +104,49 @@ export class Component implements OnInit {
 ```
 
 The example above will on startup move to the 3rd slide on the page. Pretty cool!
+
+## 2.2 Listen for changes
+
+There is a `slideChanges` observable exposed on the `SlideService` use this to listen for changes
+```typescript
+// Same decorator as above
+export class Component implements OnInit {
+	
+	constructor(
+		private slide: SlideService
+	) {}
+
+	ngOnInit() {
+		this.slide.scrollToIndex(2)
+		this.slide.slideChanges.subscribe( 
+			slideEvent => console.log(slideEvent)
+		)
+		// Will log out
+		// SlideEventStart {fromIndex: 0, toIndex: 2}
+		// SlideEventEnd {fromIndex: 0, toIndex: 2}
+	}
+}
+```
+The observable emits the type of `SlideEventStart` and `SlideEventEnd` both of which are `SlideEvent` classes and are found as an import in the package.
+
+## 2.3 Custom config
+
+You can change the sensitivity it takes to trigger a scroll by passing in a `SlideServiceConfig` object into the `setConfiguration` method of `SlideService`
+
+```typescript
+// Same decorator as above
+export class Component implements OnInit {
+	
+	constructor(
+		private slide: SlideService
+	) {}
+
+	ngOnInit() {
+		this.slide.setConfiguration({
+			sensitivity: 50 // by default this is 20
+		})
+	}
+}
+```
+
+`SlideServiceConfig` only has one option right now. You can find it's interface [here](https://github.com/Spittal/ng2-slides/blob/master/src/services/slide-service.config.ts)
