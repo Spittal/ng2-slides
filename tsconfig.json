@@ -11,12 +11,10 @@
     "sourceMap": true,
     "lib": ["es6", "dom"],
     "baseUrl": "./src",
-    "outDir": "./lib"
+    "outDir": "./dist"
   },
   "files": [
-    "./src/index.ts",
-    "./src/types/animation.d.ts",
-    "./src/types/player.d.ts"
+    "./src/index.ts"
   ],
   "exclude": [
     "node_modules"

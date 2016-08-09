@@ -1,31 +1,29 @@
 {
-  "name": "ng2-state-animation",
-  "version": "0.0.10",
-  "description": "An Angular2 abstraction for the element.animate() api.",
-  "main": "lib/index.js",
+  "name": "ng2-slides",
+  "version": "0.0.6",
+  "description": "An Angular2 library to create full height slides",
+  "main": "dist/index.js",
   "scripts": {
     "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Spittal/ng2-state-animation.git"
+    "url": "git+https://github.com/Spittal/ng2-slides.git"
   },
   "keywords": [
     "angular2",
-    "animation",
-    "animate",
-    "open",
-    "close",
-    "state"
+    "slides",
+    "panel",
+    "full height"
   ],
   "readme": "README.md",
   "author": "Jamie Spittal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Spittal/ng2-state-animation/issues"
+    "url": "https://github.com/Spittal/ng2-slides/issues"
   },
-  "homepage": "https://github.com/Spittal/ng2-state-animation#readme",
-  "typings": "lib/index.d.ts",
+  "homepage": "https://github.com/Spittal/ng2-slides#readme",
+  "typings": "dist/index.d.ts",
   "peerDependencies": {
     "@angular/core": "2.0.0-rc.4",
     "typescript": "^2.0.0-beta",
