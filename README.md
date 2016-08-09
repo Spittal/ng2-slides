@@ -22,7 +22,7 @@ boostrap(App, [
 
 Second you need to use the `ng2-slide` component in your template. And Inject the `SlideService` using constructor injection.
 ```typescript
-import { SlideComponent } from 'ng2-slide';
+import { SlideComponent } from 'ng2-slides';
 
 /**
  * Example Home Component
@@ -62,7 +62,7 @@ The SlideService will do everything you need it to as part of it's constructor. 
 Suppose you want to naviate to slide 3 from slide 1. Well we can do that with the slide service. Let's use the component above to see how.
 
 ```typescript
-import { SlideComponent } from 'ng2-slide';
+import { SlideComponent } from 'ng2-slides';
 
 /**
  * Example Home Component
