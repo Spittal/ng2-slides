@@ -40,7 +40,7 @@ export class SlideService {
     .merge(this.touchObs)
     .merge(this.keyObs);
 
-  constructor() {
+  public init(): void {
     this.elements = this.getNg2SlideElements();
     this.animator = new SlideAnimator();
 
