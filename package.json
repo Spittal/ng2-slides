@@ -1,36 +1,36 @@
 {
   "name": "ng2-slides",
-  "version": "0.3.0",
+  "version": "0.3.2",
+  "author": "Jamie Spittal",
   "description": "An Angular2 library to create full height slides",
-  "main": "dist/index.js",
-  "scripts": {
-    "prepublish": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Spittal/ng2-slides.git"
-  },
   "keywords": [
     "angular2",
     "slides",
     "panel",
     "full height"
   ],
-  "author": "Jamie Spittal",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "tsc"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spittal/ng2-slides.git"
+  },
+  "homepage": "https://github.com/Spittal/ng2-slides#readme",
   "bugs": {
     "url": "https://github.com/Spittal/ng2-slides/issues"
   },
-  "homepage": "https://github.com/Spittal/ng2-slides#readme",
-  "typings": "dist/index.d.ts",
   "peerDependencies": {
-    "@angular/core": "2.0.0-rc.5",
+    "@angular/core": "^2.0.0-rc.5",
     "typescript": "^2.0.0-beta",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "^0.6.12"
   },
   "dependencies": {
-    "@angular/core": "2.0.0-rc.5",
+    "@angular/core": "^2.0.0-rc.5",
     "typescript": "^2.0.0-beta",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "^0.6.12"
