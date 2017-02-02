@@ -50,16 +50,14 @@ export class SlideService {
   }
 
   private checkWhichEngineToUse(): any {
-    return ScrollSliderEngine;
-    // TODO: Temporary solution to OMN-163 I hope you're happy Sanaz.
-    // if (
-    //   SlideHelper.isTouchDevice() ||
-    //   window.innerHeight < this.config.minHeight ||
-    //   window.innerWidth < this.config.minWidth
-    // ) {
-    //   return ScrollSliderEngine;
-    // } else {
-    //   return TranslateSliderEngine;
-    // }
+    if (
+      SlideHelper.isTouchDevice() ||
+      window.innerHeight < this.config.minHeight ||
+      window.innerWidth < this.config.minWidth
+    ) {
+      return ScrollSliderEngine;
+    } else {
+      return TranslateSliderEngine;
+    }
   }
 }
