@@ -28,7 +28,7 @@ export class SlideObservables {
   public static touchObs: Observable<SlideObsPayload> =
     Observable.fromEvent(window, 'touchstart')
       .zip(Observable.fromEvent(window, 'touchend'))
-      .map(payload => {
+      .map((payload: any) => {
         const anyPayload: any = <any> payload;
 
         // Below, layerY is for iOS and Safari devices,
@@ -41,12 +41,12 @@ export class SlideObservables {
                   (anyPayload[1].layerX || anyPayload[1].changedTouches[0].clientX)
         };
       })
-      .filter(change => Math.abs(change.deltaY) > 50);
+      .filter((change: any) => Math.abs(change.deltaY) > 50);
 
-  public static keys: {} = {37: true, 38: true, 39: true, 40: true};
+  public static keys: any = {37: true, 38: true, 39: true, 40: true};
   public static keyObs: Observable<SlideObsPayload> =
     Observable.fromEvent(document, 'keydown')
-      .filter(event => SlideObservables.keys[(<any> event).keyCode])
+      .filter((event: any) => SlideObservables.keys[event.keyCode])
       .map(event => {
         let change: number;
         if ((<any> event).key === 'ArrowDown') {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject, Subscription } from 'rxjs';
-import { SlideEvent, SlideServiceConfig, SlideEventStart, SlideEventEnd } from './models';
+import { Observable, ReplaySubject } from 'rxjs';
+import { SlideEvent, SlideServiceConfig } from './models';
 import { SliderEngine, TranslateSliderEngine, ScrollSliderEngine } from './slider-engine';
 import { SlideHelper } from './slide-helper';
 
@@ -15,8 +15,8 @@ export class SlideService {
     minWidth: 800
   };
 
-  public init(initialIndex: number = 0, config?: SlideServiceConfig) {
-    if (config) this.config = config;
+  public init(initialIndex = 0, config?: SlideServiceConfig) {
+    if (config) { this.config = config; }
     this.engine = new (this.checkWhichEngineToUse())();
     this.bootstrapEngine(initialIndex);
     this.startResizeListener();

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
-import { SlideComponent } from './slide';
-import { SlideService } from './services';
+import {CommonModule} from '@angular/common';
+import { SlideComponent } from './src/slide';
+import { SlideService } from './src/services';
+
+export * from './src/slide';
+export * from './src/services';
 
 @NgModule({
   declarations: [

@@ -1,38 +1,50 @@
 {
   "name": "ng2-slides",
-  "version": "0.4.0",
-  "author": "Jamie Spittal",
-  "description": "An Angular2 library to create full height slides",
-  "keywords": [
-    "angular2",
-    "slides",
-    "panel",
-    "full height"
-  ],
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "version": "0.5.0",
   "scripts": {
-    "prepublish": "tsc"
+    "build": "ngc -p tsconfig.json",
+    "lint": "tslint src/**/*.ts",
+    "test": "ngc && karma start",
+    "prepublish": "ngc",
+    "ngc": "ngc"
   },
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Spittal/ng2-slides.git"
+    "url": "https://github.com/Spittal/ng2-slides"
   },
-  "homepage": "https://github.com/Spittal/ng2-slides#readme",
+  "author": {
+    "name": "James Spittal",
+    "email": "lastmanout@gmail.com"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Spittal/ng2-slides/issues"
   },
-  "peerDependencies": {
-    "@angular/core": "^2.4.5",
-    "rxjs": "^5.1.0",
-    "typescript": "^2.1.5",
-    "zone.js": "^0.7.6"
-  },
+  "main": "./dist/index.js",
   "dependencies": {
-    "@angular/core": "^2.4.5",
-    "rxjs": "^5.1.0",
-    "typescript": "^2.1.5",
-    "zone.js": "^0.7.6"
+  },
+  "devDependencies": {
+    "@angular/core": "^2.0.0",
+    "@angular/common": "^2.0.0",
+    "@angular/compiler": "^2.4.5",
+    "@angular/compiler-cli": "^2.4.5",
+    "@angular/core": "^2.0.0",
+    "@angular/platform-server": "^2.4.5",
+    "@angular/platform-browser": "^2.4.5",
+    "codelyzer": "^0.0.28",
+    "rxjs": "^5.0.1",
+    "tslint": "^3.15.1",
+    "typescript": "2.0.2",
+    "zone.js": "0.7.2",
+    "@types/es6-shim": "^0.31.32",
+    "@types/protractor": "^4.0.0",
+    "@types/jasmine": "^2.5.40",
+    "@types/selenium-webdriver": "^2.53.39"
+  },
+  "engines": {
+    "node": ">=0.8.0"
   }
 }
