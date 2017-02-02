@@ -75,7 +75,7 @@
     "@angular/tsc-wrapped": "0.5.1",
     "@angularclass/idle-preload": "^1.0.4",
     "core-js": "2.4.1",
-    "ng2-slides": "/Users/jamie/Desktop/ng2-slides-0.5.0.tgz",
+    "ng2-slides": "/Users/jamie/Desktop/ng2-slides-0.5.1.tgz",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "~0.7.4"
   },
