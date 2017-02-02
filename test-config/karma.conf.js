@@ -3,7 +3,7 @@
  */
 
 const ENV = process.env.npm_lifecycle_event;
-const runOnce = ENV === 'test:once' || ENV === 'test:once:ci';
+const runOnce = ENV === 'test:once'
 
 module.exports = function(config) {
   const testWebpackConfig = require('./webpack.test.js');

@@ -2,11 +2,10 @@ require('ts-node/register');
 const ports = require('../constants')
 const helpers = require('../helpers');
 
-let port;
-helpers.hasProcessFlag('universal') ? port = ports.UNIVERSAL_PORT : port = ports.E2E_PORT;
-
 exports.config = {
-  baseUrl: `http://localhost:${port}/`,
+  baseUrl: `http://localhost:${ports.E2E_PORT}/`,
+
+  // use `npm run e2e`
   specs: [
     helpers.root('e2e/**/**.e2e.ts'),
     helpers.root('e2e/**/*.e2e.ts'),

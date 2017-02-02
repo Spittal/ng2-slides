@@ -24,8 +24,6 @@ const STORE_DEV_TOOLS = require('../constants').STORE_DEV_TOOLS;
  */
 module.exports = {
 
-  entry: {},
-
   /**
    * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
    *
@@ -168,11 +166,8 @@ module.exports = {
     new DefinePlugin({
       AOT: false,
       ENV: JSON.stringify('test'),
-      HMR: false,
       PORT: 3000,
-      HOST: JSON.stringify('localhost'),
-      STORE_DEV_TOOLS: JSON.stringify(STORE_DEV_TOOLS),
-      UNIVERSAL: false
+      HOST: JSON.stringify('localhost')
     }),
     new NamedModulesPlugin(),
     new webpack.LoaderOptionsPlugin({
