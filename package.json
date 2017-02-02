@@ -24,13 +24,15 @@
     "url": "https://github.com/Spittal/ng2-slides/issues"
   },
   "peerDependencies": {
-    "@angular/core": "^2.1.0",
-    "typescript": "^2.0.0",
-    "rxjs": "5.0.0",
+    "@angular/core": "^2.4.5",
+    "rxjs": "^5.1.0",
+    "typescript": "^2.1.5",
+    "zone.js": "^0.7.6"
   },
   "dependencies": {
-    "@angular/core": "^2.0.0",
-    "typescript": "^2.0.0-beta",
-    "rxjs": "^5.0.0"
+    "@angular/core": "^2.4.5",
+    "rxjs": "^5.1.0",
+    "typescript": "^2.1.5",
+    "zone.js": "^0.7.6"
   }
 }
