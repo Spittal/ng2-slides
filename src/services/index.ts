@@ -1,2 +1,2 @@
 export * from './slide.service';
-export * from './slide.event';
+export * from './models';

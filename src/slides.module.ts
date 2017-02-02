@@ -7,8 +7,10 @@ import { SlideService } from './services';
     SlideComponent
   ],
   providers: [
-  	SlideService
+    SlideService
   ],
-  bootstrap: [ SlideComponent ]
+  exports: [
+    SlideComponent
+  ]
 })
 export class SlidesModule {}

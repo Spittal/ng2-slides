@@ -1,104 +1,65 @@
- import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
-import { SlideAnimator } from './slide.animator';
-import { SlideEventEnd, SlideEventStart, SlideEvent } from './slide.event';
-import { SlideServiceConfig } from './slide-service.config';
+import { Injectable } from '@angular/core';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
+import { SlideEvent, SlideServiceConfig, SlideEventStart, SlideEventEnd } from './models';
+import { SliderEngine, TranslateSliderEngine, ScrollSliderEngine } from './slider-engine';
+import { SlideHelper } from './slide-helper';
 
 @Injectable()
 export class SlideService {
   public slideChange: ReplaySubject<SlideEvent> = new ReplaySubject<SlideEvent>();
 
-  private elements: HTMLElement[];
-
-  private animator: SlideAnimator;
-  private animating: boolean = false;
-
+  private engine: SliderEngine;
   private config: SlideServiceConfig = {
-    sensitivity: 20
+    sensitivity: 40,
+    minHeight: 400,
+    minWidth: 800
   };
 
-  /** Observables */
-  private keys: Object = {37: true, 38: true, 39: true, 40: true};
-  private keyObs: Observable<any> = Observable.fromEvent(document, 'keydown')
-    .filter(event => this.keys[(<KeyboardEvent> event).keyCode]);
-
-  private touchObs: Observable<any> = Observable.fromEvent(window, 'touchstart')
-    .zip(Observable.fromEvent(window, 'touchend'))
-    .map(payload => {
-      const anyPayload: any = <any> payload;
-      return {
-        deltaY: anyPayload[0].changedTouches[0].clientY -
-                anyPayload[1].changedTouches[0].clientY
-      }
-    })
-    .filter(change => Math.abs(change.deltaY) > 50);
-
-  private scrollObs: Observable<any> = Observable.fromEvent(window, 'wheel')
-    .merge(Observable.fromEvent(window, 'mousewheel'))
-    .merge(Observable.fromEvent(window, 'DOMMouseScroll'))
-    .merge(Observable.fromEvent(window, 'touchmove'))
-    .merge(this.touchObs)
-    .merge(this.keyObs);
-
-  public init(): void {
-    this.elements = this.getNg2SlideElements();
-    this.animator = new SlideAnimator();
-
-    this.scrollObs.subscribe(event => {
-      if(window.innerHeight > 600) {
-        this.preventDefault(event);
-
-        if (!this.animating) {
-          this.elements = this.getNg2SlideElements();
-          const currentIndex: number = this.getCurrentSlideIndex(this.elements);
-
-          if (event.deltaY > this.config.sensitivity || event.key === 'ArrowDown') {
-            this.scrollToIndex(currentIndex + 1, currentIndex);
-          } else if (event.deltaY < -this.config.sensitivity || event.key === 'ArrowUp') {
-            this.scrollToIndex(currentIndex - 1, currentIndex);
-          }
-        }
-      }
-    });
+  public init(initialIndex: number = 0, config?: SlideServiceConfig) {
+    if (config) this.config = config;
+    this.engine = new (this.checkWhichEngineToUse())();
+    this.bootstrapEngine(initialIndex);
+    this.startResizeListener();
   }
 
-  public scrollToIndex(index: number, previousIndex?: number, elements?: HTMLElement[]): void {
-    if (elements) this.elements = elements;
-    if (!previousIndex) previousIndex = this.getCurrentSlideIndex(this.elements);
+  public scrollToIndex(toIndex: number): void {
+    this.engine.scrollToIndex(toIndex);
+  }
 
-    this.slideChange.next(new SlideEventStart(previousIndex, index))
+  public setPause(state: boolean): void {
+    this.engine.setPause(state);
+  }
 
-    if (this.elements[index]) {
 
-      const startingPoint = window.scrollY;
-      const endingPoint = this.elements[index].getBoundingClientRect().top + window.scrollY;
+  private bootstrapEngine(initialIndex: number): void {
+    this.engine.init(initialIndex, this.config)
+      .subscribe(event => this.slideChange.next(event));
+  }
 
-      this.animating = true;
-      this.animator.animateScroll(startingPoint, endingPoint, () => {
-        this.slideChange.next(new SlideEventEnd(previousIndex, index))
-        this.animating = false;
+  private startResizeListener(): void {
+    Observable.fromEvent(window, 'resize')
+      .debounceTime(300)
+      .map(() => this.checkWhichEngineToUse())
+      .filter(newEngine => !(this.engine instanceof newEngine))
+      .subscribe(newEngine => {
+        const previousIndex = this.engine.remove();
+        delete this.engine;
+        this.engine = new (newEngine)();
+        this.bootstrapEngine(previousIndex);
       });
-    }
   }
 
-  public setConfiguration(config: SlideServiceConfig): void {
-    this.config = Object.assign(this.config, config);
-  }
-
-  private getNg2SlideElements(): HTMLElement[] {
-    return Array.prototype.slice.call(document.querySelectorAll('ng2-slide'));
-  }
-
-  private getCurrentSlideIndex(elements: HTMLElement[]): number {
-    return elements.findIndex(element => {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY;
-      return offsetTop <= window.scrollY && window.scrollY < offsetTop + element.clientHeight;
-    })
-  }
-
-  private preventDefault(e: Event): void {
-    e = e || window.event;
-    if (e.preventDefault) e.preventDefault();
-    e.returnValue = false;
+  private checkWhichEngineToUse(): any {
+    return ScrollSliderEngine;
+    // TODO: Temporary solution to OMN-163 I hope you're happy Sanaz.
+    // if (
+    //   SlideHelper.isTouchDevice() ||
+    //   window.innerHeight < this.config.minHeight ||
+    //   window.innerWidth < this.config.minWidth
+    // ) {
+    //   return ScrollSliderEngine;
+    // } else {
+    //   return TranslateSliderEngine;
+    // }
   }
 }
