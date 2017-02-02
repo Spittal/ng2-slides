@@ -1,14 +1,35 @@
-# Node generated files
-node_modules
-npm-debug.log
-typings
-
-# OS generated files
-Thumbs.db
 .DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+.idea
+.vscode
 
-# Ignored files
-*.js
-*.map
-*.d.ts
-!src/types/*.d.ts
+# Node Files #
+/node_modules
+/bower_components
+npm-debug.log
+
+# Typing #
+/src/typings/tsd/
+/typings/
+/tsd_typings/
+
+# Dist #
+/dist/
+/__build__/**
+.webpack.json
+/src/assets/bower_components/
+
+# Coverage #
+/coverage/
+
+/output/
+/compiled/
+.awcache/
+/src/app/**/*.css
+ts-node
+/**/*.ngfactory.ts
+/**/*.css.ts
+/**/*.css.shim.ts
+dll/
