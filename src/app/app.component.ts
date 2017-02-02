@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { SlideService } from 'ng2-slides';
 import { views } from './app-nav-views';
 
 @Component({
@@ -8,10 +8,15 @@ import { views } from './app-nav-views';
   templateUrl: './app.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   views = views;
 
-  constructor() { }
+  constructor(private slides: SlideService) {
+  }
+
+  ngOnInit() {
+    this.slides.init();
+  }
 
   activateEvent(event) {
     if (ENV === 'development') {
