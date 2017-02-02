@@ -16,12 +16,14 @@ export class TranslateSliderAnimator {
     };
 
     elements[fromIndex].style.transform = fromIndexFinal;
+
     const fromIndexPlayer = elements[fromIndex].animate([
       { transform: 'translate3D(0, 0, 0)' },
       { transform: fromIndexFinal }
     ], animationMeta);
     elements[toIndex].style.transform =  'translate3D(0, 0, 0)';
-    const toIndexPlayer = elements[toIndex].animate([
+
+    elements[toIndex].animate([
       { transform: toIndexStart },
       { transform: 'translate3D(0, 0, 0)' }
     ], animationMeta);

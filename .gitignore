@@ -1,6 +1,8 @@
 # Node
 node_modules/*
 npm-debug.log
+dll
+.awcache
 
 /compiled
 *.metadata.json

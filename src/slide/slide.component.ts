@@ -10,10 +10,6 @@ import { Component } from '@angular/core';
       height: auto;
       width: 100%;
 
-      @media (min-width: 1000px) {
-        min-height: 100vh;
-      }
-
       &.slide {
         display: none;
         position: fixed;
@@ -24,7 +20,13 @@ import { Component } from '@angular/core';
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
       }
-    }`],
+    }
+    @media (min-width: 1000px) {
+      :host {
+        min-height: 100vh;
+      }
+    }
+  `],
   template: `<ng-content></ng-content>`
 })
 export class SlideComponent {
